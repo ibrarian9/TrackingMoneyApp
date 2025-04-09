@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.ksp)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -64,4 +65,12 @@ dependencies {
     annotationProcessor(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+    // Navigation Compose
+    implementation(libs.androidx.navigation.compose)
+    // Material Icons
+    implementation(libs.androidx.material.icons.extended)
+    // Compose Chart
+    implementation(libs.compose.charts)
+    // Foundation
+    implementation(libs.androidx.foundation)
 }
