@@ -1,20 +1,26 @@
 package com.app.trackingmoney.ui.common
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import com.app.trackingmoney.ui.screen.summary.SummaryViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ExpenseContent() {
-    // Sample content for Expense.
-    Box(modifier = Modifier
-        .fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "Expense Content", color = Color.White)
+fun ExpenseContent(
+    modifier: Modifier = Modifier,
+    summaryViewModel: SummaryViewModel = koinViewModel()
+) {
+    val transaction by summaryViewModel.expenseTransaction.collectAsState()
+
+    // Render the list of transactions.
+    LazyColumn(modifier = modifier.fillMaxSize()) {
+        items(items = transaction) { data ->
+            ListTrasaction(data = data)
+        }
     }
 }

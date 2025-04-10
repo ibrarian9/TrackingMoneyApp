@@ -1,4 +1,4 @@
-package com.app.trackingmoney.ui.screen
+package com.app.trackingmoney.ui.screen.home
 
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
@@ -26,18 +26,24 @@ import com.app.trackingmoney.ui.common.BalanceCommon
 import ir.ehsannarmani.compose_charts.RowChart
 import ir.ehsannarmani.compose_charts.models.BarProperties
 import ir.ehsannarmani.compose_charts.models.Bars
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    innerPadding: PaddingValues
+    innerPadding: PaddingValues,
+    onClickAction: () -> Unit,
+    homeViewModel: HomeViewModel = koinViewModel()
 ) {
     Column(
         modifier = modifier.fillMaxSize()
             .background(color = Color.Black)
             .padding(paddingValues = innerPadding)
     ) {
-        BalanceCommon()
+        BalanceCommon(
+            onClickListener = onClickAction,
+            homeViewModel = homeViewModel
+        )
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -67,14 +73,14 @@ fun HomeScreen(
                             label = "Jan",
                             values = listOf(
                                 Bars.Data(
-                                    label = "Linux",
+                                    label = "Income",
                                     value = 50.0,
                                     color = Brush.verticalGradient(
                                         colors = listOf(Color.Blue, Color.Cyan)
                                     )
                                 ),
                                 Bars.Data(
-                                    label = "Windows",
+                                    label = "Expense",
                                     value = 70.0,
                                     color = SolidColor(Color.Red)
                                 )
@@ -84,14 +90,14 @@ fun HomeScreen(
                             label = "Feb",
                             values = listOf(
                                 Bars.Data(
-                                    label = "Linux",
+                                    label = "Income",
                                     value = 80.0,
                                     color = Brush.verticalGradient(
                                         colors = listOf(Color.Blue, Color.Cyan)
                                     )
                                 ),
                                 Bars.Data(
-                                    label = "Windows",
+                                    label = "Expense",
                                     value = 60.0,
                                     color = SolidColor(Color.Red)
                                 )
@@ -117,5 +123,8 @@ fun HomeScreen(
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen(innerPadding = PaddingValues(20.dp))
+    HomeScreen(
+        innerPadding = PaddingValues(top = 20.dp),
+        onClickAction = {}
+    )
 }

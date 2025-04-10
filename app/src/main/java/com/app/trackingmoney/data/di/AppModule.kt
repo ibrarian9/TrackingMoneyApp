@@ -3,6 +3,7 @@ package com.app.trackingmoney.data.di
 import com.app.trackingmoney.data.MainRepository
 import com.app.trackingmoney.data.local.AppDatabase
 import com.app.trackingmoney.ui.screen.addAmount.AddAmountViewModel
+import com.app.trackingmoney.ui.screen.home.HomeViewModel
 import com.app.trackingmoney.ui.screen.summary.SummaryViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,4 +35,5 @@ val repoModule = module {
 val viewModelModule = module {
     viewModel { AddAmountViewModel(get()) }
     viewModel { SummaryViewModel(get()) }
+    viewModel { HomeViewModel(get()) }
 }

@@ -10,6 +10,6 @@ sealed class NavigationItem(
     val route: String,
     val icon: ImageVector
 ){
-    object Home : NavigationItem("home", "Home", Icons.Default.Home)
-    object Summary : NavigationItem("summary", "Summary", Icons.AutoMirrored.Default.List)
+    object Home : NavigationItem("Home", "Home", Icons.Default.Home)
+    object Summary : NavigationItem("Summary", "Summary", Icons.AutoMirrored.Default.List)
 }

@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import com.app.trackingmoney.ui.common.BottomNavigationBar
 import com.app.trackingmoney.ui.navigation.Screen
 import com.app.trackingmoney.ui.screen.addAmount.AddAmountScreen
+import com.app.trackingmoney.ui.screen.home.HomeScreen
 import com.app.trackingmoney.ui.screen.summary.SummaryScreen
 
 @Composable
@@ -24,7 +25,7 @@ fun MainScreen(
     // Determine the current route.
     val currentRoute = navBackStackEntry?.destination?.route
 
-    val noBottomBarRoutes = listOf(Screen.OnboardingPage.route)
+    val noBottomBarRoutes = listOf(Screen.OnboardingPage.route, Screen.AddTransactionPage.route)
 
     Scaffold(
         bottomBar = {
@@ -48,13 +49,26 @@ fun MainScreen(
                 )
             }
             composable(Screen.HomePage.route){
-                HomeScreen(innerPadding = innerPadding)
+                HomeScreen(
+                    innerPadding = innerPadding,
+                    onClickAction = {
+                        navController.navigate(Screen.AddTransactionPage.route)
+                    }
+                )
             }
             composable(Screen.AddTransactionPage.route){
-                AddAmountScreen(innerPadding = innerPadding)
+                AddAmountScreen(
+                    innerPadding = innerPadding,
+                    navController = navController
+                )
             }
             composable(Screen.SummaryPage.route){
-                SummaryScreen(innerPadding = innerPadding)
+                SummaryScreen(
+                    innerPadding = innerPadding,
+                    onClickAction = {
+                        navController.navigate(Screen.AddTransactionPage.route)
+                    }
+                )
             }
         }
     }

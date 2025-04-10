@@ -5,6 +5,7 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.app.trackingmoney.ui.navigation.NavigationItem
@@ -20,11 +21,13 @@ fun BottomNavigationBar(
 
     val currentDestionation = navController.currentBackStackEntryAsState().value?.destination
 
-    NavigationBar {
+    NavigationBar(
+        containerColor = Color.White
+    ) {
         screens.forEach { screen ->
             NavigationBarItem(
-                icon = { Icon(imageVector = screen.icon, contentDescription = screen.title) },
-                label = { Text(text = screen.title) },
+                icon = { Icon(imageVector = screen.icon, contentDescription = screen.title, tint = Color.Black) },
+                label = { Text(text = screen.title, color = Color.Black) },
                 selected = currentDestionation?.route == screen.route,
                 onClick = {
                     navController.navigate(screen.route) {
